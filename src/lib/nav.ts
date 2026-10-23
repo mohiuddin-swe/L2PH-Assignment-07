@@ -3,6 +3,7 @@ import {
   BookOpen,
   CalendarCheck,
   ClipboardList,
+  CreditCard,
   Library,
   LayoutDashboard,
   Megaphone,
@@ -44,7 +45,8 @@ export const NAV: Record<Role, NavItem[]> = {
     { label: "Enrollments", href: "/student/enrollments", icon: ClipboardList },
     { label: "Attendance", href: "/student/attendance", icon: CalendarCheck },
     { label: "Results", href: "/student/results", icon: Award },
-    { label: "Fees and payments", href: "/student/invoices", icon: Wallet },
+    { label: "Invoices", href: "/student/invoices", icon: Wallet },
+    { label: "Payment history", href: "/student/payments", icon: CreditCard },
     { label: "Profile", href: "/student/profile", icon: UserRound },
   ],
 };
