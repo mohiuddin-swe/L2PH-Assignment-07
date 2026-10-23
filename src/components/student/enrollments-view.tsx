@@ -5,6 +5,7 @@ import Link from "next/link";
 import { DataTable, type Column } from "@/components/common/data-table";
 import { EmptyState } from "@/components/common/empty-state";
 import { StatusBadge } from "@/components/common/status-badge";
+import { DropEnrollmentButton } from "@/components/student/drop-enrollment-button";
 import { buttonVariants } from "@/components/ui/button";
 import { useListParams } from "@/hooks/use-list-params";
 import { useListQuery } from "@/hooks/use-list-query";
@@ -32,6 +33,15 @@ const columns: Column<MyEnrollment>[] = [
   { id: "credit", header: "Credit", align: "right", className: "tabular-nums", cell: (enrollment) => enrollment.offering.course.credit },
   { id: "status", header: "Status", cell: (enrollment) => <StatusBadge status={enrollment.status} /> },
   { id: "date", header: "Enrolled on", hideOnMobile: true, cell: (enrollment) => formatDate(enrollment.createdAt) },
+  {
+    id: "action",
+    header: "",
+    align: "right",
+    cell: (enrollment) =>
+      enrollment.status === "ENROLLED" ? (
+        <DropEnrollmentButton enrollmentId={enrollment.id} courseLabel={enrollment.offering.course.code} />
+      ) : null,
+  },
 ];
 
 export function EnrollmentsView() {
