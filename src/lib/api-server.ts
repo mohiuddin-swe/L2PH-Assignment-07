@@ -21,7 +21,7 @@ async function serverRequest<T>(path: string, query?: Record<string, QueryValue>
     throw new ApiError("The server is not reachable right now. Please try again in a moment.", 503);
   }
 
-  if (res.status === 401) redirect("/login");
+  if (res.status === 401) redirect("/api/auth/expired");
 
   const json = (await res.json().catch(() => null)) as ApiEnvelope<T> | null;
   if (!res.ok || !json || !json.success) {
