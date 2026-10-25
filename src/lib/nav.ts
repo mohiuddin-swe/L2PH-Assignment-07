@@ -34,8 +34,9 @@ export const NAV: Record<Role, NavItem[]> = {
     { label: "Audit logs", href: "/admin/audit-logs", icon: ScrollText },
     { label: "Profile", href: "/admin/profile", icon: UserRound },
   ],
-  TEACHER: [
-    { label: "My classes", href: "/teacher", icon: LayoutDashboard, exact: true },
+   TEACHER: [
+    { label: "Dashboard", href: "/teacher", icon: LayoutDashboard, exact: true },
+    { label: "My classes", href: "/teacher/classes", icon: BookOpen },
     { label: "Notices", href: "/teacher/notices", icon: Megaphone },
     { label: "Profile", href: "/teacher/profile", icon: UserRound },
   ],
