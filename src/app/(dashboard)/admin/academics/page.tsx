@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { OfferingsView } from "@/components/admin/offerings-view";
+import { AcademicsView } from "@/components/admin/academics-view";
 
 export const metadata: Metadata = { title: "Academics" };
 
 export default function AdminAcademicsPage() {
-  return <OfferingsView />;
+  return <AcademicsView />;
 }

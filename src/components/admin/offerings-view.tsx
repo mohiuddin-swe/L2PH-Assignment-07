@@ -1,10 +1,9 @@
 "use client";
 
-import { Library, Plus } from "lucide-react";
+import { Library } from "lucide-react";
 import Link from "next/link";
 import { DataTable, type Column } from "@/components/common/data-table";
 import { EmptyState } from "@/components/common/empty-state";
-import { PageHeader } from "@/components/common/page-header";
 import { buttonVariants } from "@/components/ui/button";
 import { useListParams } from "@/hooks/use-list-params";
 import { useListQuery } from "@/hooks/use-list-query";
@@ -38,16 +37,6 @@ export function OfferingsView() {
 
   return (
     <>
-      <PageHeader
-        title="Academics"
-        description="Course offerings for every semester."
-        actions={
-          <Link href="/admin/academics/new" className={buttonVariants()}>
-            <Plus aria-hidden />
-            Create offering
-          </Link>
-        }
-      />
       <DataTable
         columns={columns}
         rows={list.data?.data}
