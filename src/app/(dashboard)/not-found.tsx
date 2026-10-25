@@ -12,7 +12,7 @@ export default function DashboardNotFound() {
         title="We could not find that"
         description="It may have been removed, or you may not have access to it."
         action={
-          <Link href="/" className={buttonVariants({ variant: "outline" })}>
+          <Link href="/login" className={buttonVariants({ variant: "outline" })}>
             Back to my dashboard
           </Link>
         }
