@@ -10,12 +10,15 @@ interface ConfirmDialogProps {
   title: string;
   description: string;
   confirmLabel: string;
+  cancelLabel?: string;
+  /** Use "default" for non-destructive confirmations such as publishing. */
+  tone?: "destructive" | "default";
   pending?: boolean;
   onConfirm: () => void;
 }
 
 // Asks "are you sure?" before a destructive action (drop a course, cancel an invoice, ...).
-export function ConfirmDialog({ open, onOpenChange, title, description, confirmLabel, pending, onConfirm }: ConfirmDialogProps) {
+export function ConfirmDialog({ open, onOpenChange, title, description, confirmLabel, cancelLabel = "Keep it", tone = "destructive", pending, onConfirm }: ConfirmDialogProps) {
   return (
     <Dialog open={open} onOpenChange={(next) => (pending ? undefined : onOpenChange(next))}>
       <DialogContent showCloseButton={false}>
@@ -25,9 +28,9 @@ export function ConfirmDialog({ open, onOpenChange, title, description, confirmL
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" disabled={pending} onClick={() => onOpenChange(false)}>
-            Keep it
+            {cancelLabel}
           </Button>
-          <Button variant="destructive" disabled={pending} onClick={onConfirm}>
+          <Button variant={tone === "destructive" ? "destructive" : "default"} disabled={pending} onClick={onConfirm}>
             {pending ? <Loader2 className="animate-spin" aria-hidden /> : null}
             {confirmLabel}
           </Button>
