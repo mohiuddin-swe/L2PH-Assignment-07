@@ -21,7 +21,7 @@ import { useAuthStore } from "@/stores/auth-store";
 import type { Notice } from "@/types/api";
 
 // Shared by teachers and admins. Teachers can change only their own notices; admins can change any.
-export function NoticesView() {
+export function NoticesView({ canCreate = true }: { canCreate?: boolean }) {
   const user = useAuthStore((state) => state.user);
   const params = useListParams({ defaultLimit: 6, defaultSortBy: "createdAt" });
   const list = useListQuery<Notice>("notices", "notices", params.query);
@@ -56,10 +56,12 @@ export function NoticesView() {
         title="Notices"
         description="Announcements for everyone in the university."
         actions={
-          <Button onClick={openCreate}>
-            <Plus aria-hidden />
-            New notice
-          </Button>
+          canCreate ? (
+            <Button onClick={openCreate}>
+              <Plus aria-hidden />
+              New notice
+            </Button>
+          ) : undefined
         }
       />
 
@@ -114,15 +116,15 @@ export function NoticesView() {
           <EmptyState
             icon={Megaphone}
             title={params.hasActiveFilters ? "No notices match your search" : "No notices yet"}
-            description={params.hasActiveFilters ? undefined : "Post the first announcement for your students."}
+            description={params.hasActiveFilters ? undefined : canCreate ? "Post the first announcement for your students." : "Announcements from your teachers and the university will appear here."}
             action={
               params.hasActiveFilters ? (
                 <Button variant="outline" onClick={params.reset}>
                   Clear search
                 </Button>
-              ) : (
+              ) : canCreate ? (
                 <Button onClick={openCreate}>New notice</Button>
-              )
+              ) : undefined
             }
           />
         </Card>

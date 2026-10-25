@@ -48,6 +48,7 @@ export const NAV: Record<Role, NavItem[]> = {
     { label: "Results", href: "/student/results", icon: Award },
     { label: "Invoices", href: "/student/invoices", icon: Wallet },
     { label: "Payment history", href: "/student/payments", icon: CreditCard },
+    { label: "Notices", href: "/student/notices", icon: Megaphone },
     { label: "Profile", href: "/student/profile", icon: UserRound },
   ],
 };
